@@ -1,6 +1,8 @@
 # DynamicJson
-Deserialize JSON to dynamic object.
+Deserialize JSON to JavaScript-like dynamic object.
 
+![Nuget](https://img.shields.io/nuget/v/LoveKicher.DynamicJson?color=green)
+![Release](https://img.shields.io/github/v/release/SwingCosmic/LoveKicher.DynamicJson)
 ## Requirement
 * System.Text.Json
 
@@ -8,7 +10,7 @@ Deserialize JSON to dynamic object.
 
 ```csharp
 using System.Text.Json;
-using DynamicJson;
+using LoveKicher.DynamicJson;
 
 var json =
 @"{
@@ -30,6 +32,6 @@ dynamic value = JsonSerializer
 Console.WriteLine(value.boolValue); // false
 Console.WriteLine(value.array[2]["nested.prop"]); // nested value
 
-Console.WriteLine(((object)value).GetType().FullName); // DynamicJson.DynamicDictionary
+Console.WriteLine(((object)value).GetType().FullName); // LoveKicher.DynamicJson.DynamicDictionary
 
 ```
