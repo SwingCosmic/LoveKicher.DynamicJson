@@ -1,4 +1,4 @@
-using DynamicJson;
+using LoveKicher.DynamicJson;
 using NUnit.Framework;
 using System;
 using System.Text.Json;

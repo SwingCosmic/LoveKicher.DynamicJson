@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 
-namespace DynamicJson
+namespace LoveKicher.DynamicJson
 {
     public static class JsonExtension
     {
