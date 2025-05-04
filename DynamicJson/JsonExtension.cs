@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Dynamic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace LoveKicher.DynamicJson
         /// can be <see cref="String"/>, <see cref="Double"/>, <see cref="Boolean"/>,
         /// <see langword="null"/>, <see cref="DynamicDictionary"/> or <see cref="IList{dyanmic}"/>.
         /// </returns>
-        public static dynamic DeserializeDynamic(this JsonElement element)
+        public static dynamic? DeserializeDynamic(this JsonElement element)
         {
             if (element.ValueKind == JsonValueKind.True || element.ValueKind == JsonValueKind.False)
             {
@@ -67,7 +68,7 @@ namespace LoveKicher.DynamicJson
         /// <param name="camelCase">Whether to convert .NET properties(usually PascalCase) to camelCase, 
         /// default value is <see langword="false"/>.</param>
         /// <returns></returns>
-        public static dynamic AsDynamic(this object obj, bool camelCase = false)
+        public static dynamic? AsDynamic(this object obj, bool camelCase = false)
         {
             return JsonSerializer.Deserialize<JsonElement>
             (

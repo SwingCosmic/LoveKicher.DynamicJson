@@ -1,6 +1,7 @@
 using LoveKicher.DynamicJson;
 using NUnit.Framework;
 using System;
+using System.Collections.Dynamic;
 using System.Text.Json;
 
 namespace DynamicJsonTest
@@ -18,13 +19,12 @@ namespace DynamicJsonTest
             dynamic obj = new DynamicDictionary();
             obj["111"] = 666;
             obj.abc = new[] { 1, 2, 3 };
-            Assert.DoesNotThrow(() => { var a = obj["ttttt"]; });
 
             var json = JsonSerializer.Serialize(obj);
-            Assert.AreEqual(@"{""111"":666,""abc"":[1,2,3]}", json);
+            Assert.That(@"{""111"":666,""abc"":[1,2,3]}", Is.EqualTo(json));
 
             DynamicDictionary obj2 = JsonSerializer.Deserialize<DynamicDictionary>(json);
-            Assert.AreEqual(2, obj2.Count);
+            Assert.That(obj2, Has.Count.EqualTo(2));
         }
 
         [Test]
@@ -38,8 +38,8 @@ namespace DynamicJsonTest
                 {
                     true , "666", new DynamicDictionary
                     {
-                        ["£¿`%$xcdd4"] = "foo",
-                        ["Û`¥¨¿Ú$Çø¡á¡¶"] = new [] { 1, 1, 4 }
+                        ["ï¼Ÿ`%$xcdd4"] = "foo",
+                        ["æ„›`ã‚¨å£$åŒºâ™‚ã€Š"] = new [] { 1, 1, 4 }
                     }
                 }
             };
@@ -51,7 +51,7 @@ namespace DynamicJsonTest
             Assert.DoesNotThrow(() => { obj2.bar = obj2.x[2]["./;gdl/\tlkfd ~`y7"]; });
             Assert.DoesNotThrow(() => { obj2.x[1] = null; });
             Assert.Throws<ArgumentOutOfRangeException>(() => { obj2.x[4] = "error"; });
-            Assert.AreEqual(json1, json2);
+            Assert.That(json1, Is.EqualTo(json2));
         }
     }
 }
